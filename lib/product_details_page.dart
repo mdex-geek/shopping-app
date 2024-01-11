@@ -11,6 +11,31 @@ class ProductDetailsPage extends StatefulWidget {
 }
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
+  //this state class give excess to build context due to this i am able to use context outside build function
+  //exact same as it
+
+  // here are you saying listen and you add product also
+  void ontap() {
+    if (selectedSize != 0) {
+      Provider.of<CartProvider>(context, listen: false).addProduct(
+        {
+          'id': widget.product['id'],
+          'title': widget.product['title'],
+          'Price': widget.product['Price'],
+          'Sizes': selectedSize,
+          'company': widget.product['company'],
+          'imageUrl': widget.product['imageUrl'],
+        },
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('select the size'),
+        ),
+      );
+    }
+  }
+
   int selectedSize = 0;
   @override
   Widget build(BuildContext context) {
@@ -88,12 +113,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     Icons.shopping_cart_outlined,
                     color: Colors.black,
                   ),
-                  onPressed: () {
-                    Provider.of<CartProvider>(context, listen: false)
-                        .addProduct(
-                      widget.product,
-                    );
-                  },
+                  onPressed: ontap,
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Theme.of(context).colorScheme.primary,
                       minimumSize: const Size(double.infinity, 50)),
