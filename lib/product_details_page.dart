@@ -14,7 +14,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   //this state class give excess to build context due to this i am able to use context outside build function
   //exact same as it
 
-  // here are you saying listen and you add product also
+  // here are you saying listen and you add product also soo that why we listen set false
   void ontap() {
     if (selectedSize != 0) {
       Provider.of<CartProvider>(context, listen: false).addProduct(
@@ -26,6 +26,11 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           'company': widget.product['company'],
           'imageUrl': widget.product['imageUrl'],
         },
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Product added to cart'),
+        ),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(

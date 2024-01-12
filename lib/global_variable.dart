@@ -38,14 +38,3 @@ final products = [
     'imageUrl': 'assets/images/NikeSneaker.jpeg',
   },
 ];
-
-final cart = [
-  {
-    'id': '3',
-    'title': 'Man \'s Nike Jordan',
-    'Price': 440.52,
-    'Sizes': 12,
-    'company': 'Nike',
-    'imageUrl': 'assets/images/NikeSneaker.jpeg',
-  }
-];
